@@ -1,0 +1,17 @@
+stages:
+  - deploy
+    
+production:
+  tags:
+    - tag-tecza
+  stage: deploy
+  script:
+    - rsync -hravz --exclude '.git' --exclude 'media'  . /var/www/tecza/html/
+    - chown -R tecza:tecza /var/www/tecza/html/
+    - chmod -R 777 /var/www/tecza/html/public/
+    - chmod -R 777 /var/www/tecza/html/resources/
+    - chmod -R 777 /var/www/tecza/html/storage/
+    - chmod -R 777 /var/www/tecza/html/bootstrap/cache/
+    - chmod -R 777 /var/www/tecza/html/storage/logs/
+    - chmod -R 777 /var/www/tecza/html/storage/framework/views/
+    
